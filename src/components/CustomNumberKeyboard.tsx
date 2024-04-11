@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import CustomRoundedButton from './CustomRoundedButton';
 import { CancelKey, DotKey } from './svg';
@@ -7,7 +6,6 @@ import userCustomKeyBoard from '../hooks/userCustomKeyBoard';
 
 const CustomNumberKeyboard = () => {
   const { setKeyValue, customKeyBoardState, deleteFromKey } = userCustomKeyBoard();
-
   return (
     <>
       <Text style={{ marginTop: 50, fontSize: 30 }}>{customKeyBoardState}</Text>
