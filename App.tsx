@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, ScrollView, StatusBar, Text, View } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
-import { CustomButton, CustomNumberKeyboard, CustomTillProductCard } from './src/components';
+import { CustomButton, CustomNumberKeyboard, CustomTillProductCard, CustomCartProductCard } from './src/components';
 import { Provider } from 'react-redux';
 import store from './src/global/appState/store';
 
@@ -10,8 +10,14 @@ function App(): React.JSX.Element {
     <PaperProvider>
       <SafeAreaView style={{ flex: 1, backgroundColor: '#efeded' }}>
         <Provider store={store}>
-          <ScrollView style={{ margin: 30 }}>
+          <ScrollView style={{ margin: 10 }}>
             <CustomTillProductCard />
+            <View style={{marginTop: 40}}/>
+            <CustomCartProductCard/>
+            <View style={{marginTop: 40}}/>
+            <CustomCartProductCard/>
+            <View style={{marginTop: 40}}/>
+            <CustomCartProductCard/>
             <CustomNumberKeyboard />
             <CustomButton bntType="secondary" text="Hello Press Me" mode="contained" onPress={() => {}} />
           </ScrollView>
