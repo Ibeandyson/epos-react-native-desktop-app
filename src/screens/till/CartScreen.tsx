@@ -1,6 +1,6 @@
-import { ScrollView, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import Layout from '../../components/layout';
-import { CustomButton } from '../../components';
+import { CustomButton,CustomCartProductCard } from '../../components';
 import { appColors } from '../../global/constant/colors';
 
 const CartScreen = () => {
@@ -14,9 +14,31 @@ const CartScreen = () => {
     );
   };
 
+  const Footer = () => {
+    return (
+      <>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text style={{ color: 'rgba(74, 74, 74, 1)', fontSize: 20, fontWeight: '600' }}>Total:</Text>
+          <Text style={{ color: 'rgba(74, 74, 74, 1)', fontSize: 20, fontWeight: '600' }}>£ 8,000</Text>
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 10, width: '100%' }}>
+          <CustomButton bntType="primary" mode="contained" text={'Cancel Order'} onPress={() => {}} />
+          <CustomButton bntType="secondary" mode="contained" text={'Cancel Order'} onPress={() => {}} />
+        </View>
+      </>
+    );
+  };
+
   return (
     <>
-      <Layout headerContent={<OrderList />} />
+      <Layout headerContent={<OrderList />} footerContent={<Footer />} mainContent={<>
+        <CustomCartProductCard/>
+        <CustomCartProductCard/>
+        <CustomCartProductCard/>
+        <CustomCartProductCard/>
+        <CustomCartProductCard/>
+        <CustomCartProductCard/>
+      </>} />
     </>
   );
 };

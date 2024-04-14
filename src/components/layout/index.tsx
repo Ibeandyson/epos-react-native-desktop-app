@@ -14,7 +14,7 @@ const Layout = ({ headerContent, mainContent, footerContent }: IProps) => {
   return (
     <View style={{ flexDirection: 'row' }}>
       <View style={{ backgroundColor: appColors.secondary, height: windowHeight, width: '50%', paddingLeft: 20, paddingRight: 20 }}></View>
-      <View style={{ backgroundColor: '#efeded', height: windowHeight, width: '50%', justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ backgroundColor: '#efeded', height: windowHeight, width: '50%' }}>
         <Appbar.Header
           elevated={true}
           style={{
@@ -29,20 +29,21 @@ const Layout = ({ headerContent, mainContent, footerContent }: IProps) => {
             <Avatar.Image size={50} source={{ uri: 'http://andy.com' }} />
           </View>
         </Appbar.Header>
-        <ScrollView style={{ paddingLeft: 20, paddingRight: 20 }}>{mainContent}</ScrollView>
+        <View style={{ width: '100%', paddingVertical: 20, paddingHorizontal: 20 }}>
+          <ScrollView scrollEnabled={true}  >{mainContent}</ScrollView>
+        </View>
+
         <View
           style={{
-            // paddingLeft: 20,
-            // paddingRight: 20,
-            backgroundColor: 'red',
             width: '100%',
             position: 'absolute',
             bottom: 0,
             left: 0,
             right: 0,
-            paddingVertical: 20, // Add padding if needed
-            paddingHorizontal: 10, // Add padding if needed
-            height: 200,
+            paddingVertical: 20,
+            paddingHorizontal: 20,
+            height: '30%',
+            backgroundColor: '#efeded',
           }}
         >
           {footerContent}

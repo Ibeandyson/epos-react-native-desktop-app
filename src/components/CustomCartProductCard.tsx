@@ -6,7 +6,7 @@ import { appColors } from '../global/constant/colors';
 const CustomCartProductCard = () => {
   return (
     <>
-      <Card style={{ backgroundColor: '#ffffff', height: 100 }} mode="elevated">
+      <Card style={{ backgroundColor: '#ffffff', height: 100, marginTop: 5, marginBottom: 5 }} mode="elevated">
         <Card.Content style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10 }}>
           <View style={{ width: 60, height: 66, backgroundColor: 'rgba(217, 211, 222, 1)', borderRadius: 10 }}></View>
           <Text style={{ fontWeight: '700', fontSize: 14 , color: appColors.primary}}>Four Cousins</Text>
