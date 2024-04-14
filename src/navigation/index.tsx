@@ -17,7 +17,7 @@ const Stack = createNativeStackNavigator<AppNavigatorProps>();
 export type AppProps = NativeStackScreenProps<AppNavigatorProps, 'app'>;
 
 const AppNavigator = () => {
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -37,7 +37,7 @@ const AppNavigator = () => {
         </View>
       ) : (
         <Stack.Navigator
-          initialRouteName={'auth'}
+          initialRouteName={'app'}
           screenOptions={{
             headerShown: false,
           }}>

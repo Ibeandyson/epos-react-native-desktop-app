@@ -4,20 +4,14 @@ import { PaperProvider } from 'react-native-paper';
 import { CustomButton, CustomNumberKeyboard, CustomTillProductCard, CustomCartProductCard, CustomNavButton } from './src/components';
 import { Provider } from 'react-redux';
 import store from './src/global/appState/store';
+import AppNavigator from './src/navigation';
 
 function App(): React.JSX.Element {
   return (
     <PaperProvider>
       <SafeAreaView style={{ flex: 1, backgroundColor: '#efeded' }}>
         <Provider store={store}>
-          <ScrollView style={{ margin: 10 }}>
-            <CustomTillProductCard />
-            <View style={{ marginTop: 40 }} />
-            <CustomNavButton/>
-            <CustomCartProductCard />
-            <CustomNumberKeyboard />
-            <CustomButton bntType="secondary" text="Hello Press Me" mode="contained" onPress={() => {}} />
-          </ScrollView>
+          <AppNavigator />
         </Provider>
       </SafeAreaView>
     </PaperProvider>

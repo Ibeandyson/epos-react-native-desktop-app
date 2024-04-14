@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Button } from 'react-native-paper';
 import { appColors } from '../global/constant/colors';
 
