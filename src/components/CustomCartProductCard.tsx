@@ -1,15 +1,15 @@
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Card } from 'react-native-paper';
-import { Svg, Path, } from 'react-native-svg';
+import { Svg, Path } from 'react-native-svg';
 import { appColors } from '../global/constant/colors';
 
 const CustomCartProductCard = () => {
   return (
     <>
-      <Card style={{ backgroundColor: '#ffffff', height: 100, marginTop: 5, marginBottom: 5 }} mode="elevated">
+      <Card style={{ backgroundColor: '#ffffff', height: 80, marginTop: 5, marginBottom: 5 }} mode="elevated">
         <Card.Content style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10 }}>
-          <View style={{ width: 60, height: 66, backgroundColor: 'rgba(217, 211, 222, 1)', borderRadius: 10 }}></View>
-          <Text style={{ fontWeight: '700', fontSize: 14 , color: appColors.primary}}>Four Cousins</Text>
+          <View style={{ width: 50, height: 50, backgroundColor: 'rgba(217, 211, 222, 1)', borderRadius: 10 }}></View>
+          <Text style={{ fontWeight: '700', fontSize: 14, color: appColors.primary }}>Four Cousins</Text>
           <TextInput
             style={{
               borderWidth: 3,
@@ -24,7 +24,7 @@ const CustomCartProductCard = () => {
             onChangeText={(text) => {}}
           />
           <View>
-            <Text style={{ fontWeight: '700', fontSize: 13,color: appColors.primary }}>Price</Text>
+            <Text style={{ fontWeight: '700', fontSize: 13, color: appColors.primary }}>Price</Text>
             <Text style={{ fontWeight: '700', fontSize: 15, marginTop: 2, color: appColors.primary }}>£ 2,000</Text>
           </View>
           <TouchableOpacity>

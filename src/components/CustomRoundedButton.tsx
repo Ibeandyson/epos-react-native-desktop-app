@@ -9,7 +9,7 @@ interface IProps {
 const CustomRoundedButton = ({ onPress, value, isComponent }: IProps) => {
   return (
     <TouchableOpacity
-      style={{ backgroundColor: '#ffffff', width: 80, height: 80, borderRadius: 100, justifyContent: 'center', alignItems: 'center' }}
+      style={{ backgroundColor: '#ffffff', width: 90, height: 90, borderRadius: 100, justifyContent: 'center', alignItems: 'center' }}
       onPress={onPress}
     >
       {isComponent ? (

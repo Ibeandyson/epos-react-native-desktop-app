@@ -9,9 +9,12 @@ interface IProps {
   icon?: string;
   loading?: boolean;
   bntType: 'secondary' | 'primary';
+  width?: any;
+  fontSize?: number;
+  padding?: number;
 }
 
-const CustomButton = ({ mode, text, onPress, icon, loading, bntType }: IProps) => {
+const CustomButton = ({ mode, text, onPress, icon, loading, bntType, width, fontSize, padding }: IProps) => {
   return (
     <>
       <Button
@@ -20,12 +23,12 @@ const CustomButton = ({ mode, text, onPress, icon, loading, bntType }: IProps) =
         labelStyle={
           mode == 'outlined' || mode == 'text'
             ? {
-                fontSize: 16,
+                fontSize: fontSize ? fontSize : 16,
                 fontWeight: '700',
                 color: bntType == 'primary' ? appColors.primary : appColors.secondary,
               }
             : {
-                fontSize: 16,
+                fontSize: fontSize ? fontSize : 16,
                 fontWeight: '700',
                 color: bntType == 'primary' ? '#ffffff' : appColors.primary,
               }
@@ -35,12 +38,14 @@ const CustomButton = ({ mode, text, onPress, icon, loading, bntType }: IProps) =
             ? {
                 borderRadius: 8,
                 // backgroundColor: bntType == 'primary' ? appColors.primary : appColors.secondary,
-                padding: 10,
+                padding: padding ? padding : null,
+                width: width ? width : '100%',
               }
             : {
                 borderRadius: 8,
                 backgroundColor: bntType == 'primary' ? appColors.primary : appColors.secondary,
-                padding: 10,
+                padding: padding ? padding : null,
+                width: width ? width : '100%',
               }
         }
         icon={icon}
