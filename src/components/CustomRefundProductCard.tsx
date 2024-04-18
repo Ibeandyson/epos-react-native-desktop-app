@@ -1,9 +1,9 @@
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Card } from 'react-native-paper';
-import { Svg, Path } from 'react-native-svg';
+import CustomButton from './CustomButton';
 import { appColors } from '../global/constant/colors';
 
-const CustomCartProductCard = () => {
+const CustomRefundProductCard = () => {
   return (
     <>
       <Card style={{ backgroundColor: '#ffffff', height: 80, marginTop: 5, marginBottom: 5 }} mode="elevated">
@@ -26,18 +26,11 @@ const CustomCartProductCard = () => {
             <Text style={{ fontWeight: '700', fontSize: 13, color: appColors.primary }}>Price</Text>
             <Text style={{ fontWeight: '700', fontSize: 15, marginTop: 2, color: appColors.primary }}>£ 2,000</Text>
           </View>
-          <TouchableOpacity>
-            <Svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <Path
-                d="M31.6666 10.6835L29.3166 8.3335L19.9999 17.6502L10.6833 8.3335L8.33325 10.6835L17.6499 20.0002L8.33325 29.3168L10.6833 31.6668L19.9999 22.3502L29.3166 31.6668L31.6666 29.3168L22.3499 20.0002L31.6666 10.6835Z"
-                fill="#1E1E1E"
-              />
-            </Svg>
-          </TouchableOpacity>
+          <CustomButton width={100} fontSize={12} onPress={() => {}} bntType="secondary" mode="contained" text="Refund" />
         </Card.Content>
       </Card>
     </>
   );
 };
 
-export default CustomCartProductCard;
+export default CustomRefundProductCard;

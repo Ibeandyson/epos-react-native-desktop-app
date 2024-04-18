@@ -1,16 +1,33 @@
 import { View, TouchableOpacity, Image } from 'react-native';
+import useCustomKeyBoard from '../hooks/useCustomKeyBoard';
 
-const CustomNavButton = () => {
+interface IProps {
+  goToRefundScreen?: () => void;
+  goToCartScreen?: any;
+}
+
+const CustomNavButton = ({ goToRefundScreen, goToCartScreen }: IProps) => {
+  const { setShowKeyBoard } = useCustomKeyBoard();
   return (
     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-      <TouchableOpacity>
-        <Image style={{height: 150, width: 150 }} source={require('../assets/keypad.png')} />
+      <TouchableOpacity
+        style={{ borderRadius: 20 }}
+        onPress={() => {
+          setShowKeyBoard(true), goToCartScreen();
+        }}
+      >
+        <Image style={{ height: 150, width: 150 }} source={require('../assets/keypad.png')} />
       </TouchableOpacity>
-      <TouchableOpacity>
-      <Image style={{height: 150, width: 150 }} source={require('../assets/productBtn.png')} />
+      <TouchableOpacity
+        style={{ borderRadius: 20 }}
+        onPress={() => {
+          setShowKeyBoard(false), goToCartScreen();
+        }}
+      >
+        <Image style={{ height: 150, width: 150 }} source={require('../assets/productBtn.png')} />
       </TouchableOpacity>
-      <TouchableOpacity>
-      <Image style={{height: 150, width: 150 }} source={require('../assets/refundBtn.png')} />
+      <TouchableOpacity style={{ borderRadius: 20 }} onPress={goToRefundScreen}>
+        <Image style={{ height: 150, width: 150 }} source={require('../assets/refundBtn.png')} />
       </TouchableOpacity>
     </View>
   );

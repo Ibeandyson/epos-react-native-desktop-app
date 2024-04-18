@@ -33,7 +33,7 @@ const Layout = ({ headerContent, mainContent, footerContent, leftSideContent }: 
           </View>
         </Appbar.Header>
 
-        <View style={{ width: '100%', paddingVertical: 20, paddingHorizontal: 20, height: '70%' , paddingBottom: 100 }}>
+        <View style={{ width: '100%', paddingVertical: 20, paddingHorizontal: 20, height: '70%', paddingBottom: 100 }}>
           <ScrollView showsVerticalScrollIndicator={false} scrollEnabled={true}>
             {mainContent}
           </ScrollView>

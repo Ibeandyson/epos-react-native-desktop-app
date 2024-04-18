@@ -2,13 +2,13 @@ import { View } from 'react-native';
 import CustomRoundedButton from './CustomRoundedButton';
 import { CancelKey, DotKey } from './svg';
 import { Text } from 'react-native-paper';
-import userCustomKeyBoard from '../hooks/userCustomKeyBoard';
+import useCustomKeyBoard from '../hooks/useCustomKeyBoard';
 
 const CustomNumberKeyboard = () => {
-  const { setKeyValue, customKeyBoardState, deleteFromKey } = userCustomKeyBoard();
+  const { setKeyValue, customKeyBoardState, deleteFromKey } = useCustomKeyBoard();
   return (
     <>
-      <Text style={{ marginTop: 50, fontSize: 30 }}>{customKeyBoardState}</Text>
+      <View style={{ marginTop: 50 }}/>
       <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
         <CustomRoundedButton value={1} onPress={() => setKeyValue(customKeyBoardState.concat('', '1'))} />
         <CustomRoundedButton value={2} onPress={() => setKeyValue(customKeyBoardState.concat('', '2'))} />

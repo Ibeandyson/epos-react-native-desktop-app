@@ -1,19 +1,31 @@
-import React, { useState } from 'react';
+import React, { FC, useState, useMemo } from 'react';
 import { ScrollView, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Svg, Path } from 'react-native-svg';
 import Layout from '../../components/layout';
 import { CustomButton, CustomCartProductCard, CustomTillProductCard, CustomNumberKeyboard, CustomNavButton } from '../../components';
+import useCustomKeyBoard from '../../hooks/useCustomKeyBoard';
+import { CartScreenProps } from '../../navigation/appNavigation';
+import { appColors } from '../../global/constant/colors';
 
-const CartScreen = () => {
+const CartScreen: FC<CartScreenProps> = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const { hideShowKey } = useCustomKeyBoard();
+
+  const goToRefundScreen = () => navigation.navigate('refundScreen');
+  const goToCartScreen = () => navigation.navigate('cartScreen');
 
   const OrderList = () => {
     return (
-      <ScrollView indicatorStyle="white" contentContainerStyle={{ padding: 2 }} horizontal scrollEnabled={true}>
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((data: any) => (
-          <CustomButton width={'15%'} bntType="secondary" mode="text" text={`Order${data}`} onPress={() => {}} />
-        ))}
-      </ScrollView>
+      <View style={{ flexDirection: 'row' }}>
+        <CustomButton width={150} fontSize={12} onPress={() => {}} bntType="secondary" mode="contained" text="Clear order" />
+        <View style={{ width: "67%", marginLeft: 10,  marginRight: 10 }}>
+          <ScrollView indicatorStyle="white" contentContainerStyle={{ padding: 2 }} horizontal scrollEnabled={true}>
+            {[1, 2, 3, 4, 5, 6].map((data: any) => (
+              <CustomButton width={'20%'} bntType="secondary" mode="text" text={`Order${data}`} onPress={() => {}} />
+            ))}
+          </ScrollView>
+        </View>
+      </View>
     );
   };
 
@@ -21,8 +33,8 @@ const CartScreen = () => {
     return (
       <>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Text style={{ color: 'rgba(74, 74, 74, 1)', fontSize: 20, fontWeight: '600' }}>Total</Text>
-          <Text style={{ color: 'rgba(74, 74, 74, 1)', fontSize: 20, fontWeight: '500' }}>£ 8,000</Text>
+          <Text style={{ color: 'rgba(74, 74, 74, 1)', fontSize: 20, fontWeight: '800' }}>Total</Text>
+          <Text style={{ color: 'rgba(74, 74, 74, 1)', fontSize: 20, fontWeight: '800' }}>£ 8,000</Text>
         </View>
         <View style={{ flexDirection: 'row', marginTop: 10, width: '100%', justifyContent: 'center' }}>
           <View style={{ marginHorizontal: 5, width: '50%' }}>
@@ -36,58 +48,59 @@ const CartScreen = () => {
     );
   };
 
-  const LeftSide = () => {
+  const LeftSide = useMemo(() => {
     return (
       <>
-        {/* <View style={{ paddingVertical: 20, paddingHorizontal: 20 }}>
-          <CustomNumberKeyboard />
-        </View> */}
-        <View style={{ paddingVertical: 20, paddingHorizontal: 20, height: '70%' }}>
-          <View style={{ flexDirection: 'row' }}>
-            <TouchableOpacity>
-              <Svg width="20" height="20" viewBox="0 0 40 40" fill="none">
-                <Path d="M29.725 6.45L26.7584 3.5L10.275 20L26.775 36.5L29.725 33.55L16.175 20L29.725 6.45Z" fill="#1E1E1E" />
-              </Svg>
-            </TouchableOpacity>
-            <Text style={{ fontWeight: '700', color: 'rgba(30, 30, 30, 1)', marginBottom: 12, marginLeft: 10 }}>PRODUCTS</Text>
+        {hideShowKey ? (
+          <View style={{ paddingVertical: 30, paddingHorizontal: 30, height: '70%' }}>
+            <CustomNumberKeyboard />
           </View>
+        ) : (
+          <View style={{ paddingVertical: 30, paddingHorizontal: 30, height: '70%' }}>
+            <View style={{ flexDirection: 'row' }}>
+              <TouchableOpacity style={{ marginTop: -3 }}>
+                <Svg width="25" height="25" viewBox="0 0 40 40" fill="none">
+                  <Path d="M29.725 6.45L26.7584 3.5L10.275 20L26.775 36.5L29.725 33.55L16.175 20L29.725 6.45Z" fill="#1E1E1E" />
+                </Svg>
+              </TouchableOpacity>
+              <Text style={{ fontWeight: '700', color: 'rgba(30, 30, 30, 1)', marginLeft: 10 }}>PRODUCTS</Text>
+            </View>
 
-          <View style={{ marginBottom: 20 }}>
-            <TextInput
-              textAlign="center"
-              textAlignVertical="center"
-              keyboardAppearance="default"
-              keyboardType="web-search"
-              placeholder='Search'
-              style={{
-                // justifyContent: 'center',
-                // alignItems: 'center',
-                height: 50,
-                backgroundColor: 'rgba(255, 191, 0, 1)',
-                borderColor: 'rgba(30, 30, 30, 0.5)',
-                borderWidth: 1,
-                borderRadius: 10,
-              }}
-              // value={searchQuery}
-              // onChangeText={setSearchQuery}
-            />
+            <View style={{ marginBottom: 20, marginTop: 20 }}>
+              <TextInput
+                textAlign="center"
+                textAlignVertical="center"
+                keyboardAppearance="default"
+                placeholder="Search"
+                style={{
+                  height: 50,
+                  padding: 13,
+                  backgroundColor: appColors.secondary,
+                  borderColor: 'rgba(30, 30, 30, 0.5)',
+                  borderWidth: 1,
+                  borderRadius: 10,
+                }}
+                // value={searchQuery}
+                // onChangeText={setSearchQuery}
+              />
+            </View>
+            <ScrollView showsVerticalScrollIndicator={false}>
+              {[1, 2, 3, 3, 4, 4, 5].map(() => (
+                <CustomTillProductCard />
+              ))}
+            </ScrollView>
           </View>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            {[1, 2, 3, 3, 4, 4, 5].map(() => (
-              <CustomTillProductCard />
-            ))}
-          </ScrollView>
-        </View>
+        )}
 
-        <CustomNavButton />
+        <CustomNavButton goToRefundScreen={goToRefundScreen} goToCartScreen={goToCartScreen} />
       </>
     );
-  };
+  }, [hideShowKey]);
 
   return (
     <>
       <Layout
-        leftSideContent={<LeftSide />}
+        leftSideContent={LeftSide}
         headerContent={<OrderList />}
         footerContent={<Footer />}
         mainContent={
