@@ -1,13 +1,7 @@
 import React, { FC, useState, useMemo } from 'react';
 import { ScrollView, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import Layout from '../../components/layout';
-import {
-  CustomCategoryCard,
-  CustomButton,
-  CustomCartProductCard,
-  CustomNumberKeyboard,
-  CustomNavButton,
-} from '../../components';
+import { CustomCategoryCard, CustomButton, CustomCartProductCard, CustomNumberKeyboard, CustomNavButton, CustomModal } from '../../components';
 import useCustomKeyBoard from '../../hooks/useCustomKeyBoard';
 import { CartScreenProps } from '../../navigation/appNavigation';
 import { appColors } from '../../global/constant/colors';
@@ -15,6 +9,9 @@ import { appColors } from '../../global/constant/colors';
 const CartScreen: FC<CartScreenProps> = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const { hideShowKey } = useCustomKeyBoard();
+  const [visible, setVisible] = useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
 
   const goToRefundScreen = () => navigation.navigate('refundScreen');
   const goToCartScreen = () => navigation.navigate('cartScreen');
@@ -56,6 +53,8 @@ const CartScreen: FC<CartScreenProps> = ({ navigation }) => {
   const LeftSide = useMemo(() => {
     return (
       <>
+        <CustomModal marginLeft={300} marginRight={300} hideModal={hideModal} visible={visible} />
+
         {hideShowKey ? (
           <View style={{ paddingVertical: 30, paddingHorizontal: 30, height: '70%' }}>
             <CustomNumberKeyboard />
@@ -65,10 +64,10 @@ const CartScreen: FC<CartScreenProps> = ({ navigation }) => {
             <CustomCategoryCard />
           </View>
         )}
-        <CustomNavButton goToRefundScreen={goToRefundScreen} goToCartScreen={goToCartScreen} />
+        <CustomNavButton setRefundOptionModal={showModal} goToRefundScreen={goToRefundScreen} goToCartScreen={goToCartScreen} />
       </>
     );
-  }, [hideShowKey]);
+  }, [hideShowKey, visible]);
 
   return (
     <>
