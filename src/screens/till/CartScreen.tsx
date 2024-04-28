@@ -1,5 +1,5 @@
 import React, { FC, useState, useMemo } from 'react';
-import { ScrollView, View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, Image, TouchableOpacity } from 'react-native';
 import Layout from '../../components/layout';
 import { CustomCategoryCard, CustomButton, CustomCartProductCard, CustomNumberKeyboard, CustomNavButton, CustomModal } from '../../components';
 import useCustomKeyBoard from '../../hooks/useCustomKeyBoard';
@@ -53,7 +53,24 @@ const CartScreen: FC<CartScreenProps> = ({ navigation }) => {
   const LeftSide = useMemo(() => {
     return (
       <>
-        <CustomModal marginLeft={300} marginRight={300} hideModal={hideModal} visible={visible} />
+        <CustomModal
+          content={
+            <>
+              <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                <TouchableOpacity>
+                  <Image style={{ height: 150, width: 150, marginRight: 30 }} source={require('../../assets/sacnrefund.png')} />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <Image style={{ height: 150, width: 150, marginLeft: 30 }} source={require('../../assets/manualrefund.png')} />
+                </TouchableOpacity>
+              </View>
+            </>
+          }
+          marginLeft={500}
+          marginRight={500}
+          hideModal={hideModal}
+          visible={visible}
+        />
 
         {hideShowKey ? (
           <View style={{ paddingVertical: 30, paddingHorizontal: 30, height: '70%' }}>
