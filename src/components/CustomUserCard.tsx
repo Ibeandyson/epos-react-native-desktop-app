@@ -3,9 +3,13 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { Avatar, Card, Switch } from 'react-native-paper';
 import { Svg, Path } from 'react-native-svg';
 import { appColors } from '../global/constant/colors';
+import CustomModal from './CustomModal';
 
 const CustomUserCard = () => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
 
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
@@ -15,7 +19,7 @@ const CustomUserCard = () => {
 
   return (
     <>
-      <Card style={{ width: '20%', marginLeft: 10, marginRight: 10, marginTop: 20 }}>
+      <Card style={{ width: 300, marginLeft: 10, marginRight: 10, marginTop: 20 }}>
         <Card.Title
           titleStyle={{ color: isSwitchOn ? 'rgba(37, 135, 47, 1)' : 'rgba(183, 35, 0, 1)', fontSize: 14 }}
           title={isSwitchOn ? 'Active' : 'Deactivated'}
@@ -36,7 +40,10 @@ const CustomUserCard = () => {
             </View>
             <Text style={{ color: '#000000' }}>johndoe@gmail.com</Text>
             <View style={{ justifyContent: 'center', flexDirection: 'row', alignItems: 'center', marginTop: 20 }}>
-              <TouchableOpacity style={{ backgroundColor: 'rgba(183, 35, 0, 1)', padding: 15, borderRadius: 10, width: 100, marginRight: 10 }}>
+              <TouchableOpacity
+                onPress={showModal}
+                style={{ backgroundColor: 'rgba(183, 35, 0, 1)', padding: 15, borderRadius: 10, width: 100, marginRight: 10 }}
+              >
                 <Text style={{ color: '#ffffff', textAlign: 'center' }}>Delete</Text>
               </TouchableOpacity>
               <TouchableOpacity style={{ backgroundColor: appColors.primary, padding: 15, borderRadius: 10, width: 100, marginLeft: 10 }}>
@@ -46,6 +53,29 @@ const CustomUserCard = () => {
           </View>
         </Card.Content>
       </Card>
+      <CustomModal
+        marginLeft={450}
+        marginRight={450}
+        visible={visible}
+        hideModal={hideModal}
+        content={
+          <View>
+            <Text style={{ fontWeight: '600', fontSize: 20, textAlign: 'center' }}>Are you sure you want to delete cashier?</Text>
+            <View style={{ justifyContent: 'center', flexDirection: 'row', marginTop: 20 }}>
+              <TouchableOpacity
+                onPress={hideModal}
+                style={{ backgroundColor: appColors.primary, padding: 15, borderRadius: 10, width: 100, margin: 30 }}
+              >
+                <Text style={{ color: '#ffffff', textAlign: 'center' }}>CANCEL</Text>
+              </TouchableOpacity>
+              <View />
+              <TouchableOpacity style={{ backgroundColor: 'rgba(183, 35, 0, 1)', padding: 15, borderRadius: 10, width: 100, margin: 30 }}>
+                <Text style={{ color: '#ffffff', textAlign: 'center' }}>YES</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        }
+      />
     </>
   );
 };
