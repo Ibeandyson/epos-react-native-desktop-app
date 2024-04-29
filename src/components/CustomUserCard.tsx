@@ -58,6 +58,7 @@ const CustomUserCard = () => {
         marginRight={450}
         visible={visible}
         hideModal={hideModal}
+        actionMode={true}
         content={
           <View>
             <Text style={{ fontWeight: '600', fontSize: 20, textAlign: 'center' }}>Are you sure you want to delete cashier?</Text>
