@@ -1,4 +1,4 @@
-import { Image, View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { appColors } from '../../global/constant/colors';
 import { LobbyScreenProps } from '../../navigation/appNavigation';
 import { FC } from 'react';
