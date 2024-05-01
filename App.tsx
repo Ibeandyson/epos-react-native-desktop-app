@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import store from './src/global/appState/store';
 import AppNavigator from './src/navigation';
 
+
 function App(): React.JSX.Element {
   
   return (

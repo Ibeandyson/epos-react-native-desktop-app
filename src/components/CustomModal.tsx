@@ -42,3 +42,4 @@ const CustomModal = ({ visible, hideModal, containerStyle, marginLeft, marginRig
 };
 
 export default CustomModal;
+

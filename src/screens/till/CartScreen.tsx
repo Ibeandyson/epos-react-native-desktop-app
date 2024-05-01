@@ -4,8 +4,7 @@ import Layout from '../../components/layout';
 import { CustomCategoryCard, CustomButton, CustomCartProductCard, CustomNumberKeyboard, CustomNavButton, CustomModal } from '../../components';
 import useCustomKeyBoard from '../../hooks/useCustomKeyBoard';
 import { CartScreenProps } from '../../navigation/appNavigation';
-import { appColors } from '../../global/constant/colors';
-
+import { appColors } from '../../global/constant/colors'; 
 const CartScreen: FC<CartScreenProps> = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const { hideShowKey } = useCustomKeyBoard();
