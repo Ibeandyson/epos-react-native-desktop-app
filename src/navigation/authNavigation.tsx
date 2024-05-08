@@ -1,24 +1,25 @@
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { LobbyScreen } from '../screens/admin';
+import { LoginOptions } from '../screens/auth';
 
 type AuthScreenProps = {
-  lobbyScreen: undefined;
+  loginOptionScreen: undefined;
 };
 
-export type lobbyScreenProps = NativeStackScreenProps<AuthScreenProps, 'lobbyScreen'>;
+export type   LoginOptionScreenScreenProps = NativeStackScreenProps<AuthScreenProps, 'loginOptionScreen'>;
 
 const Stack = createNativeStackNavigator<AuthScreenProps>();
 
 const AuthNavigation = () => {
   return (
     <Stack.Navigator
-      initialRouteName={'lobbyScreen'}
+      initialRouteName={'loginOptionScreen'}
       screenOptions={{
         statusBarTranslucent: true,
         headerShown: false,
       }}
     >
-      <Stack.Screen options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }} name="lobbyScreen" component={LobbyScreen} />
+      <Stack.Screen options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }} name="loginOptionScreen" component={LoginOptions} />
     </Stack.Navigator>
   );
 };

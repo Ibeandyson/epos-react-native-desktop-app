@@ -2,19 +2,9 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Card } from 'react-native-paper';
 import { Svg, Path } from 'react-native-svg';
 import { appColors } from '../global/constant/colors';
-import { LineBarcode } from './svg';
-import bwipjs from 'bwip-js';
+import Barcode from 'react-native-barcode-svg';
 
 const CustomAdminProductCard = () => {
-  
-  let svg = bwipjs.toSVG({
-    bcid: 'code128', // Barcode type
-    text: '0123456789', // Text to encode
-    height: 12, // Bar height, in millimeters
-    includetext: true, // Show human-readable text
-    textxalign: 'center', // Always good to set this
-    textcolor: 'ff0000', // Red text
-  });
 
   return (
     <>
@@ -29,9 +19,9 @@ const CustomAdminProductCard = () => {
                 <Text style={{ fontWeight: '600', fontSize: 13, marginTop: 2, color: appColors.primary }}>Stock Remaining : 20</Text>
               </View>
             </View>
-            {/* <svg viewBox="0 0 242 200" xmlns="http://www.w3.org/2000/svg"></svg> */}
+            <Barcode value="10012345000017" format="ITF14" maxWidth={200}  />
           </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' , marginTop: 20 }}>
             <TouchableOpacity
               style={{
                 justifyContent: 'center',

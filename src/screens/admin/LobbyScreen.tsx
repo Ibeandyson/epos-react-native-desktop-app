@@ -2,11 +2,9 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { appColors } from '../../global/constant/colors';
 import { LobbyScreenProps } from '../../navigation/appNavigation';
 import { FC } from 'react';
-import { lobbyScreenProps } from '../../navigation/authNavigation';
 import { Svg, Path, Rect, ClipPath, Defs, G } from 'react-native-svg';
 
-
-const LobbyScreen: FC<lobbyScreenProps> = ({navigation}) => {
+const LobbyScreen: FC<LobbyScreenProps> = ({ navigation }) => {
   return (
     <View
       style={{
@@ -139,9 +137,7 @@ const LobbyScreen: FC<lobbyScreenProps> = ({navigation}) => {
               </Defs>
             </Svg>
 
-            <Text style={{ color: appColors.primary, fontSize: 15, fontWeight: '600', textTransform: 'uppercase', paddingTop: 20 }}>
-            INVENTORY
-            </Text>
+            <Text style={{ color: appColors.primary, fontSize: 15, fontWeight: '600', textTransform: 'uppercase', paddingTop: 20 }}>INVENTORY</Text>
           </View>
         </TouchableOpacity>
       </View>

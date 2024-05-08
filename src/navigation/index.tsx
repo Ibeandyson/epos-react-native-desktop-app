@@ -37,7 +37,7 @@ const AppNavigator = () => {
         </View>
       ) : (
         <Stack.Navigator
-          initialRouteName={'app'}
+          initialRouteName={'auth'}
           screenOptions={{
             headerShown: false,
           }}>
