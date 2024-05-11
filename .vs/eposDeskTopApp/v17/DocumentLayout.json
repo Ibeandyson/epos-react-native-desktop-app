@@ -38,9 +38,9 @@
               "Title": "App.tsx",
               "DocumentMoniker": "C:\\Users\\mac\\Documents\\eposDeskTopApp\\App.tsx",
               "RelativeDocumentMoniker": "App.tsx",
-              "ToolTip": "C:\\Users\\mac\\Documents\\eposDeskTopApp\\App.tsx*",
-              "RelativeToolTip": "App.tsx*",
-              "ViewState": "AQIAACgAAAAAm5mZmVkuwEkAAAAIAAAA",
+              "ToolTip": "C:\\Users\\mac\\Documents\\eposDeskTopApp\\App.tsx",
+              "RelativeToolTip": "App.tsx",
+              "ViewState": "AQIAABkAAAAAAAAAAAAAABkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2024-04-07T12:34:38.237Z",
               "EditorCaption": ""
@@ -55,8 +55,7 @@
               "RelativeToolTip": "package.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-07T12:23:28.464Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-07T12:23:28.464Z"
             },
             {
               "$type": "Document",
@@ -64,12 +63,11 @@
               "Title": "index.ts",
               "DocumentMoniker": "C:\\Users\\mac\\Documents\\eposDeskTopApp\\src\\navigations\\index.ts",
               "RelativeDocumentMoniker": "src\\navigations\\index.ts",
-              "ToolTip": "C:\\Users\\mac\\Documents\\eposDeskTopApp\\src\\navigations\\index.ts*",
-              "RelativeToolTip": "src\\navigations\\index.ts*",
+              "ToolTip": "C:\\Users\\mac\\Documents\\eposDeskTopApp\\src\\navigations\\index.ts",
+              "RelativeToolTip": "src\\navigations\\index.ts",
               "ViewState": "AQIAAAsAAAAwAAAAAIApwC0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2024-04-07T12:15:17.479Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-07T12:15:17.479Z"
             },
             {
               "$type": "Document",
@@ -77,12 +75,11 @@
               "Title": "index.ts",
               "DocumentMoniker": "C:\\Users\\mac\\Documents\\eposDeskTopApp\\src\\components\\index.ts",
               "RelativeDocumentMoniker": "src\\components\\index.ts",
-              "ToolTip": "C:\\Users\\mac\\Documents\\eposDeskTopApp\\src\\components\\index.ts*",
-              "RelativeToolTip": "src\\components\\index.ts*",
+              "ToolTip": "C:\\Users\\mac\\Documents\\eposDeskTopApp\\src\\components\\index.ts",
+              "RelativeToolTip": "src\\components\\index.ts",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2024-04-07T11:59:15.342Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-07T11:59:15.342Z"
             }
           ]
         }

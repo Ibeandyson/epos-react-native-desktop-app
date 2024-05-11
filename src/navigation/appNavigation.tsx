@@ -23,18 +23,41 @@ const Stack = createNativeStackNavigator<AppScreenProps>();
 const AppNavigation = () => {
   return (
     <Stack.Navigator
-      initialRouteName={'productScreen'}
       screenOptions={{
         statusBarTranslucent: true,
         headerShown: false,
       }}
     >
-      <Stack.Screen options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }} name="cartScreen" component={CartScreen} />
-      <Stack.Screen options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }} name="refundScreen" component={RefundScreen} />
-      <Stack.Screen options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }} name="lobbyScreen" component={LobbyScreen} />
-      <Stack.Screen options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }} name="usersScreen" component={UsersScreen} />
-      <Stack.Screen options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }} name="createUserScreen" component={CreateUserScreen} />
-      <Stack.Screen options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }} name="productScreen" component={ProductScreen} />
+      <Stack.Screen
+        options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }}
+        name="cartScreen"
+        component={CartScreen}
+      />
+      <Stack.Screen
+        options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }}
+        name="refundScreen"
+        component={RefundScreen}
+      />
+      <Stack.Screen
+        options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }}
+        name="lobbyScreen"
+        component={LobbyScreen}
+      />
+      <Stack.Screen
+        options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }}
+        name="usersScreen"
+        component={UsersScreen}
+      />
+      <Stack.Screen
+        options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }}
+        name="createUserScreen"
+        component={CreateUserScreen}
+      />
+      <Stack.Screen
+        options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }}
+        name="productScreen"
+        component={ProductScreen}
+      />
     </Stack.Navigator>
   );
 };

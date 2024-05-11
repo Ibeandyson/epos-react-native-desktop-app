@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import customKeyBoardSlice from './slice/customKeyBoardSlice';
+import customDialogSlice from './slice/customDialogSlice';
 
 // Combine the reducers into a single root reducer
 const rootReducer = combineReducers({
   customKeyBoard: customKeyBoardSlice.reducer,
+  customDialogS: customDialogSlice.reducer
 });
 
 // Configure the store with the root reducer

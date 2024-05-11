@@ -27,7 +27,7 @@ const LoginOptions: FC<LoginOptionScreenScreenProps> = ({ navigation }) => {
             alignItems: 'center',
           }}
         >
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('adminLoginScreen')}>
             <View
               style={{
                 backgroundColor: 'rgba(255, 255, 255, 1)',
@@ -50,7 +50,7 @@ const LoginOptions: FC<LoginOptionScreenScreenProps> = ({ navigation }) => {
               <Text style={{ color: appColors.primary, fontSize: 15, fontWeight: '600', textTransform: 'uppercase', paddingTop: 20 }}>ADMIN</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('tillLoginScreen')}>
             <View
               style={{
                 backgroundColor: 'rgba(255, 255, 255, 1)',
