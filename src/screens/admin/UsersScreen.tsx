@@ -17,7 +17,10 @@ const UsersScreen: FC<UsersScreenProps> = ({ navigation }) => {
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                   <View style={{ flexDirection: 'row' }}>
                     <Svg style={{ marginTop: -2 }} width="25" height="25" viewBox="0 0 40 40" fill="none">
-                      <Path d="M29.725 6.45L26.7584 3.5L10.275 20L26.775 36.5L29.725 33.55L16.175 20L29.725 6.45Z" fill="#1E1E1E" />
+                      <Path
+                        d="M29.725 6.45L26.7584 3.5L10.275 20L26.775 36.5L29.725 33.55L16.175 20L29.725 6.45Z"
+                        fill="#1E1E1E"
+                      />
                     </Svg>
                     <Text style={{ fontWeight: '700', color: 'rgba(30, 30, 30, 1)', marginLeft: 10 }}>CASHIER</Text>
                   </View>
@@ -44,7 +47,15 @@ const UsersScreen: FC<UsersScreenProps> = ({ navigation }) => {
                       // onChangeText={setSearchQuery}
                     />
                   </View>
-                  <CustomButton fontSize={14} padding={5} width={200} bntType="primary" mode="contained" text="ADD CASHIER" onPress={() => {}} />
+                  <CustomButton
+                    fontSize={14}
+                    padding={5}
+                    width={200}
+                    bntType="primary"
+                    mode="contained"
+                    text="ADD CASHIER"
+                    onPress={() => navigation.navigate('createUserScreen')}
+                  />
                 </View>
               </View>
             </View>

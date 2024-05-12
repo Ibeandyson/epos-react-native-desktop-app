@@ -45,10 +45,20 @@ const LobbyScreen: FC<LobbyScreenProps> = ({ navigation }) => {
                 fill="#04065E"
               />
             </Svg>
-            <Text style={{ color: appColors.primary, fontSize: 15, fontWeight: '600', textTransform: 'uppercase', paddingTop: 20 }}>PRODUCTS</Text>
+            <Text
+              style={{
+                color: appColors.primary,
+                fontSize: 15,
+                fontWeight: '600',
+                textTransform: 'uppercase',
+                paddingTop: 20,
+              }}
+            >
+              PRODUCTS
+            </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('usersScreen')}>
           <View
             style={{
               backgroundColor: 'rgba(255, 255, 255, 1)',
@@ -73,7 +83,17 @@ const LobbyScreen: FC<LobbyScreenProps> = ({ navigation }) => {
               />
             </Svg>
 
-            <Text style={{ color: appColors.primary, fontSize: 15, fontWeight: '600', textTransform: 'uppercase', paddingTop: 20 }}>USERS</Text>
+            <Text
+              style={{
+                color: appColors.primary,
+                fontSize: 15,
+                fontWeight: '600',
+                textTransform: 'uppercase',
+                paddingTop: 20,
+              }}
+            >
+              USERS
+            </Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -104,7 +124,15 @@ const LobbyScreen: FC<LobbyScreenProps> = ({ navigation }) => {
               </Defs>
             </Svg>
 
-            <Text style={{ color: appColors.primary, fontSize: 15, fontWeight: '600', textTransform: 'uppercase', paddingTop: 20 }}>
+            <Text
+              style={{
+                color: appColors.primary,
+                fontSize: 15,
+                fontWeight: '600',
+                textTransform: 'uppercase',
+                paddingTop: 20,
+              }}
+            >
               TRANSACTIONS
             </Text>
           </View>
@@ -137,7 +165,17 @@ const LobbyScreen: FC<LobbyScreenProps> = ({ navigation }) => {
               </Defs>
             </Svg>
 
-            <Text style={{ color: appColors.primary, fontSize: 15, fontWeight: '600', textTransform: 'uppercase', paddingTop: 20 }}>INVENTORY</Text>
+            <Text
+              style={{
+                color: appColors.primary,
+                fontSize: 15,
+                fontWeight: '600',
+                textTransform: 'uppercase',
+                paddingTop: 20,
+              }}
+            >
+              INVENTORY
+            </Text>
           </View>
         </TouchableOpacity>
       </View>

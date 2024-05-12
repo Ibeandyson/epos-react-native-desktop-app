@@ -63,7 +63,7 @@ const AdminLogin: FC<AdminLoginScreenScreenProps> = ({ navigation }) => {
               bntType="primary"
               mode="contained"
               text="LOGIN"
-              loading={authLoading}
+              // loading={authLoading}
               onPress={() => adminLoginFunction(loginInfo)}
             />
           </View>
