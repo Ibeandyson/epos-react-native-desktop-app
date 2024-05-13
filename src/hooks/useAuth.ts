@@ -35,11 +35,11 @@ const useAuth = () => {
       setAuthLoading(false);
     } catch (error: any) {
       setAuthLoading(false);
-      console.log('admin login error =>', error.data);
+      console.log('admin login error =>', error);
       if (error.code == 'ERR_NETWORK') {
-        setDialogShowState(true, 'Network Error', 'Please check your network connectivity', 'Try Again');
+        setDialogShowState(true, 'Network Error', 'Please check your network connectivity', 'Try Again', 'info');
       } else {
-        setDialogShowState(true, 'Login Error', error.response.data.message, 'Try Again');
+        setDialogShowState(true, 'Login Error', error.response.data.message, 'Try Again', 'error');
       }
     }
   };
@@ -48,7 +48,7 @@ const useAuth = () => {
     setAuthLoading(true);
     if (data.passcode == '') {
       setAuthLoading(false);
-      setDialogShowState(true, 'Login Error', 'passcode is needed', 'Try Again');
+      setDialogShowState(true, 'Login Error', 'passcode is needed', 'Try Again', 'error');
       return;
     }
     try {
@@ -59,9 +59,13 @@ const useAuth = () => {
       navigation.navigate('app', { screen: 'cartScreen' });
       setAuthLoading(false);
     } catch (error: any) {
-      setDialogShowState(true, 'Login Error', error.response.data.message, 'Try Again');
       setAuthLoading(false);
       console.log('admin login error =>', error.response.data);
+      if (error.code == 'ERR_NETWORK') {
+        setDialogShowState(true, 'Network Error', 'Please check your network connectivity', 'Try Again', 'info');
+      } else {
+        setDialogShowState(true, 'Login Error', error.response.data.message, 'Try Again', 'error');
+      }
     }
   };
 

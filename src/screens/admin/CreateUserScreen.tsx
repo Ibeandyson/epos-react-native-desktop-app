@@ -53,7 +53,7 @@ const CreateUserScreen: FC<CreateUserScreenProps> = ({ navigation }) => {
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 50 }}>
               <CustomImageUpload />
-              <View style={{ width: '48%', height: 500, marginTop: 30 }}>
+              <View style={{ width: '48%', height: '100%', marginTop: -50, marginBottom: 100 }}>
                 <CustomInput
                   value={userInfo.first_name}
                   placeholder="First Name"
@@ -72,6 +72,12 @@ const CreateUserScreen: FC<CreateUserScreenProps> = ({ navigation }) => {
                   onChangeText={(e) => setUserInfo({ ...userInfo, email: e })}
                   inputMode="email"
                   keyboardType="email-address"
+                />
+                <CustomInput
+                  value={userInfo.phone}
+                  placeholder="Phone"
+                  onChangeText={(e) => setUserInfo({ ...userInfo, phone: e })}
+                  inputMode="text"
                 />
                 <CustomInput
                   value={userInfo.password}
