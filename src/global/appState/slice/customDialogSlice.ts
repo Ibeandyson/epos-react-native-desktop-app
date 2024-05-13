@@ -8,7 +8,8 @@ const customDialogSlice = createSlice({
     show: false,
     message: '',
     title: '',
-    btnText: '',
+    btnText: '', 
+    _status: ''
   },
   reducers: {
     setCustomDialogShow(state, action) {
@@ -23,10 +24,13 @@ const customDialogSlice = createSlice({
     setCustomDialogBtnText(state, action) {
       state.btnText = action.payload;
     },
+    setCustomDialogStatus(state, action) {
+      state._status = action.payload;
+    },
   },
 });
 
-export const { setCustomDialogShow, setCustomDialogMgs, setCustomDialogTitle, setCustomDialogBtnText } =
+export const { setCustomDialogShow, setCustomDialogMgs, setCustomDialogTitle, setCustomDialogBtnText, setCustomDialogStatus } =
   customDialogSlice.actions;
 
 export default customDialogSlice;
