@@ -6,6 +6,7 @@ import { setAsyncStorage, getAsyncStorage } from '../global/utils/asyncFun';
 import useAxios from './useAxios';
 import useDialogState from './useDialogState';
 import { useNavigation } from '@react-navigation/native';
+import { err } from 'react-native-svg';
 
 const useAuth = () => {
   const [authLoading, setAuthLoading] = useState(false);
@@ -13,7 +14,7 @@ const useAuth = () => {
   const { setDialogShowState } = useDialogState();
   const navigation: any = useNavigation();
 
-  const adminLoginFunction = async (data: any) => {
+  const adminLoginFunction = async (data: { password: string; email: string }) => {
     setAuthLoading(true);
     if (data.email == '') {
       setAuthLoading(false);
@@ -33,15 +34,19 @@ const useAuth = () => {
       navigation.navigate('app', { screen: 'lobbyScreen' });
       setAuthLoading(false);
     } catch (error: any) {
-      setDialogShowState(true, 'Login Error', error.response.data.message, 'Try Again');
       setAuthLoading(false);
-      console.log('admin login error =>', error.response.data);
+      console.log('admin login error =>', error.data);
+      if (error.code == 'ERR_NETWORK') {
+        setDialogShowState(true, 'Network Error', 'Please check your network connectivity', 'Try Again');
+      } else {
+        setDialogShowState(true, 'Login Error', error.response.data.message, 'Try Again');
+      }
     }
   };
 
-  const tillLoginFunction = async (data: any) => {
+  const tillLoginFunction = async (data: { passcode: string }) => {
     setAuthLoading(true);
-    if (data.password == '') {
+    if (data.passcode == '') {
       setAuthLoading(false);
       setDialogShowState(true, 'Login Error', 'passcode is needed', 'Try Again');
       return;

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import type { Method, AxiosResponse } from 'axios';
 import { getAsyncStorage } from '../global/utils/asyncFun';
-
 const useAxios = () => {
   const apiCall = async (method: Method, url: string, data?: {}): Promise<AxiosResponse> => {
     const token = await getAsyncStorage('token');

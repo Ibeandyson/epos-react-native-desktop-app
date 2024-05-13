@@ -4,11 +4,22 @@ import { Card } from 'react-native-paper';
 import AdminLayout from '../../components/layout/AdminLayout';
 import { CreateUserScreenProps } from '../../navigation/appNavigation';
 import { Svg, Path } from 'react-native-svg';
-import { CustomInput, CustomButton, CustomImageUpload } from '../../components';
+import { CustomInput, CustomButton, CustomImageUpload, CustomDialog } from '../../components';
 import { SelectList } from 'react-native-dropdown-select-list';
+import useUsers from '../../hooks/useUsers';
 
 const CreateUserScreen: FC<CreateUserScreenProps> = ({ navigation }) => {
+  const { createUser } = useUsers();
   const [selected, setSelected] = useState('');
+  const [userInfo, setUserInfo] = useState({
+    first_name: '',
+    surname: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+    role: 5,
+    phone: '',
+  });
 
   const data = [
     { key: '1', value: 'Mobiles', disabled: true },
@@ -43,14 +54,36 @@ const CreateUserScreen: FC<CreateUserScreenProps> = ({ navigation }) => {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 50 }}>
               <CustomImageUpload />
               <View style={{ width: '48%', height: 500, marginTop: 30 }}>
-                <CustomInput value="" placeholder="First Name" onChangeText={() => {}} inputMode="text" />
-                <CustomInput value="" placeholder="Last Name" onChangeText={() => {}} inputMode="text" />
                 <CustomInput
-                  value=""
+                  value={userInfo.first_name}
+                  placeholder="First Name"
+                  onChangeText={(e) => setUserInfo({ ...userInfo, first_name: e })}
+                  inputMode="text"
+                />
+                <CustomInput
+                  value={userInfo.surname}
+                  placeholder="Surname"
+                  onChangeText={(e) => setUserInfo({ ...userInfo, surname: e })}
+                  inputMode="text"
+                />
+                <CustomInput
+                  value={userInfo.email}
                   placeholder="Email Address"
-                  onChangeText={() => {}}
+                  onChangeText={(e) => setUserInfo({ ...userInfo, email: e })}
                   inputMode="email"
                   keyboardType="email-address"
+                />
+                <CustomInput
+                  value={userInfo.password}
+                  placeholder="Password"
+                  onChangeText={(e) => setUserInfo({ ...userInfo, password: e })}
+                  inputMode="text"
+                />
+                <CustomInput
+                  value={userInfo.password_confirmation}
+                  placeholder="Confirm Password"
+                  onChangeText={(e) => setUserInfo({ ...userInfo, password_confirmation: e })}
+                  inputMode="text"
                 />
                 <View style={{ marginTop: 30 }}>
                   <SelectList
@@ -70,7 +103,7 @@ const CreateUserScreen: FC<CreateUserScreenProps> = ({ navigation }) => {
                     bntType="primary"
                     mode="contained"
                     text="SAVE"
-                    onPress={() => {}}
+                    onPress={() => createUser(userInfo)}
                   />
                 </View>
               </View>
@@ -78,6 +111,7 @@ const CreateUserScreen: FC<CreateUserScreenProps> = ({ navigation }) => {
           </ScrollView>
         }
       />
+      <CustomDialog />
     </>
   );
 };
