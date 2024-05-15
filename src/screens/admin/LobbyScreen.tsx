@@ -25,7 +25,7 @@ const LobbyScreen: FC<LobbyScreenProps> = ({ navigation }) => {
           alignItems: 'center',
         }}
       >
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('productScreen')}>
           <View
             style={{
               backgroundColor: 'rgba(255, 255, 255, 1)',

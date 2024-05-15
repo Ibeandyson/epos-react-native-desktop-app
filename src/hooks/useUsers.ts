@@ -1,9 +1,7 @@
 import { CREATE_USER } from '../global/constant/apiRoutes';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../global/appState/store';
-import { setAsyncStorage, getAsyncStorage } from '../global/utils/asyncFun';
 import useAxios from './useAxios';
-import useToastNotification from './useToastNofification';
 import useDialogState from './useDialogState';
 import { useState } from 'react';
 
@@ -47,6 +45,12 @@ const useUsers = () => {
       return;
     }
     if (data.password != data.password_confirmation) {
+      setAuthLoading(false);
+      setDialogShowState(true, 'Create User Error', 'role is needed', 'Try Again', 'error');
+      return;
+    }
+
+    if (data.role == 0) {
       setAuthLoading(false);
       setDialogShowState(true, 'Create User Error', 'password dose not match', 'Try Again', 'error');
       return;

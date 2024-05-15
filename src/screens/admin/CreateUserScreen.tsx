@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, ScrollView } from 'react-native';
 import { Card } from 'react-native-paper';
 import AdminLayout from '../../components/layout/AdminLayout';
@@ -7,9 +7,11 @@ import { Svg, Path } from 'react-native-svg';
 import { CustomInput, CustomButton, CustomImageUpload, CustomDialog } from '../../components';
 import { SelectList } from 'react-native-dropdown-select-list';
 import useUsers from '../../hooks/useUsers';
+import useRole from '../../hooks/useRole';
 
 const CreateUserScreen: FC<CreateUserScreenProps> = ({ navigation }) => {
   const { createUser } = useUsers();
+  const { role, getAllRoles} = useRole();
   const [selected, setSelected] = useState('');
   const [userInfo, setUserInfo] = useState({
     first_name: '',
@@ -17,19 +19,17 @@ const CreateUserScreen: FC<CreateUserScreenProps> = ({ navigation }) => {
     email: '',
     password: '',
     password_confirmation: '',
-    role: 5,
+    role: 0,
     phone: '',
   });
 
-  const data = [
-    { key: '1', value: 'Mobiles', disabled: true },
-    { key: '2', value: 'Appliances' },
-    { key: '3', value: 'Cameras' },
-    { key: '4', value: 'Computers', disabled: true },
-    { key: '5', value: 'Vegetables' },
-    { key: '6', value: 'Diary Products' },
-    { key: '7', value: 'Drinks' },
-  ];
+  const data = role.map((data: any) => ({ key: data?.id, value: data.title }));
+
+  useEffect(() => {
+    getAllRoles();
+  }, []);
+
+console.log("selected", selected)
 
   return (
     <>
@@ -93,11 +93,12 @@ const CreateUserScreen: FC<CreateUserScreenProps> = ({ navigation }) => {
                 />
                 <View style={{ marginTop: 30 }}>
                   <SelectList
+                  placeholder='Select Role'
                     maxHeight={150}
                     search={false}
-                    setSelected={(val: any) => setSelected(val)}
+                    setSelected={(val: any) => setUserInfo({ ...userInfo, role: val })}
                     data={data}
-                    save="value"
+                    save="key"
                   />
                 </View>
 
