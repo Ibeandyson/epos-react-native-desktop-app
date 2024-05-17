@@ -7,7 +7,7 @@ import { Svg, Path } from 'react-native-svg';
 import useAuth from '../../hooks/useAuth';
 
 const AdminLogin: FC<AdminLoginScreenScreenProps> = ({ navigation }) => {
-  const [loginInfo, setLoginInfo] = useState({ email: '', password: '' });
+  const [loginInfo, setLoginInfo] = useState({ email: 'andy@admin.com', password: 'Password1234!' });
   const { adminLoginFunction, authLoading } = useAuth();
   return (
     <View style={{ backgroundColor: '#efeded', height: '100%' }}>

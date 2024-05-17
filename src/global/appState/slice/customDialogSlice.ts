@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Title } from 'react-native-paper';
 
 // Define the reducer logic for 'twoSlice'
 const customDialogSlice = createSlice({

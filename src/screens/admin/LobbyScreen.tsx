@@ -11,6 +11,8 @@ const LobbyScreen: FC<LobbyScreenProps> = ({ navigation }) => {
         flex: 1,
         justifyContent: 'center', // Align items vertically at the center
         alignItems: 'center',
+        backgroundColor: appColors.secondary,
+        height: "100%"
       }}
     >
       <View
@@ -25,7 +27,7 @@ const LobbyScreen: FC<LobbyScreenProps> = ({ navigation }) => {
           alignItems: 'center',
         }}
       >
-        <TouchableOpacity onPress={() => navigation.navigate('productScreen')}>
+        <TouchableOpacity onPress={() => navigation.navigate('categoryScreen')}>
           <View
             style={{
               backgroundColor: 'rgba(255, 255, 255, 1)',

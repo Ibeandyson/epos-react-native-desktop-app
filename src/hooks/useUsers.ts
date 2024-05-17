@@ -6,7 +6,7 @@ import useDialogState from './useDialogState';
 import { useState } from 'react';
 
 const useUsers = () => {
-  const [authLoading, setAuthLoading] = useState(false);
+  const [categoryLoading, setCategoryLoading] = useState(false);
   const { apiCall } = useAxios();
   const { setDialogShowState } = useDialogState();
   const createUser = async (data: {
@@ -19,39 +19,39 @@ const useUsers = () => {
     phone: string;
   }) => {
     if (data.first_name == '') {
-      setAuthLoading(false);
+      setCategoryLoading(false);
       setDialogShowState(true, 'Create User Error', 'first name is needed', 'Try Again', 'error');
       return;
     }
     if (data.surname == '') {
-      setAuthLoading(false);
+      setCategoryLoading(false);
       setDialogShowState(true, 'Create User Error', 'surname is needed', 'Try Again', 'error');
       return;
     }
     if (data.email == '') {
-      setAuthLoading(false);
+      setCategoryLoading(false);
       setDialogShowState(true, 'Create User Error', 'email is needed', 'Try Again', 'error');
       return;
     }
     if (data.phone == '') {
-      setAuthLoading(false);
+      setCategoryLoading(false);
       setDialogShowState(true, 'Create User Error', 'password dose not match', 'Try Again', 'error');
       return;
     }
 
     if (data.password == '') {
-      setAuthLoading(false);
+      setCategoryLoading(false);
       setDialogShowState(true, 'Create User Error', 'password is needed', 'Try Again', 'error');
       return;
     }
     if (data.password != data.password_confirmation) {
-      setAuthLoading(false);
+      setCategoryLoading(false);
       setDialogShowState(true, 'Create User Error', 'role is needed', 'Try Again', 'error');
       return;
     }
 
     if (data.role == 0) {
-      setAuthLoading(false);
+      setCategoryLoading(false);
       setDialogShowState(true, 'Create User Error', 'password dose not match', 'Try Again', 'error');
       return;
     }
@@ -59,11 +59,11 @@ const useUsers = () => {
     try {
       const res = await apiCall('POST', CREATE_USER, data);
       console.log(res.data);
-      setAuthLoading(false);
+      setCategoryLoading(false);
       setDialogShowState(true, 'Create User Success', res.data.message, 'Continue', 'success');
     } catch (error: any) {
       console.log('Create User Error =>', error.response.data);
-      setAuthLoading(false);
+      setCategoryLoading(false);
       if (error.code == 'ERR_NETWORK') {
         setDialogShowState(true, 'Network Error', 'Please check your network connectivity', 'Try Again', 'info');
       } else {
@@ -74,7 +74,7 @@ const useUsers = () => {
 
   return {
     createUser,
-    authLoading,
+    categoryLoading,
   };
 };
 

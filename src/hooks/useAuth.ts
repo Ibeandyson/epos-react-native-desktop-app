@@ -6,7 +6,7 @@ import { setAsyncStorage, getAsyncStorage } from '../global/utils/asyncFun';
 import useAxios from './useAxios';
 import useDialogState from './useDialogState';
 import { useNavigation } from '@react-navigation/native';
-import { err } from 'react-native-svg';
+
 
 const useAuth = () => {
   const [authLoading, setAuthLoading] = useState(false);

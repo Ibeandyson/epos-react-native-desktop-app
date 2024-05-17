@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../global/appState/store';
-import customKeyBoardSlice, { setState, setShowKey } from '../global/appState/slice/customKeyBoardSlice';
+import { setState, setShowKey } from '../global/appState/slice/customKeyBoardSlice';
 
 const useCustomKeyBoard = () => {
   const dispatch = useDispatch();
