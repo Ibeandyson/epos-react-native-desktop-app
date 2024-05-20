@@ -1,30 +1,28 @@
 import { View, Text, TouchableOpacity, TextInput, ScrollView, FlatList } from 'react-native';
-import React, { FC, useState, useCallback, useMemo, useEffect } from 'react';
-import { appColors } from '../../global/constant/colors';
-import { CategoryScreenProps } from '../../navigation/appNavigation';
+import React, { FC, useEffect, useState } from 'react';
+import { ProductNameScreenProps } from '../../navigation/appNavigation';
 import AdminLayout from '../../components/layout/AdminLayout';
 import { CustomButton, CustomDialog, CustomInput } from '../../components';
 import { Svg, Path } from 'react-native-svg';
-import useCategory from '../../hooks/useCategory';
+import useProduct from '../../hooks/useProduct';
+import { appColors } from '../../global/constant/colors';
 
-const CategoryScreen: FC<CategoryScreenProps> = ({ navigation }: any) => {
+const ProductNameScreen: FC<ProductNameScreenProps> = ({ navigation, route }: any) => {
   const [show, setShow] = useState(false);
-  const [categoryInfo, setCategoryInfo] = useState({ name: '', description: '' });
-  const hideForm = () => setShow(false);
-  const { createCategory, getAllCategory, categoryData, categoryLoading } = useCategory();
-  const handleNameChange = useCallback((name: string) => {
-    setCategoryInfo((prevInfo) => ({ ...prevInfo, name }));
-  }, []);
+  const [productNameGroupInfo, setProductNameGroupInfo] = useState({
+    product_name_group: '',
+    price: '',
+  });
+  const { getAllProductNameGroup, createProductNameGroup, productLoading, productNameGroupData } = useProduct();
+  const { categoryParamsData }: any = route.params;
 
-  const handleDescriptionChange = useCallback((description: string) => {
-    setCategoryInfo((prevInfo) => ({ ...prevInfo, description }));
-  }, []);
+  const onSubmit = () => {
+    createProductNameGroup({ ...productNameGroupInfo, product_category_id: categoryParamsData.id });
+  };
 
   useEffect(() => {
-    getAllCategory();
+    getAllProductNameGroup(categoryParamsData.id);
   }, []);
-
-  console.log(categoryData);
 
   return (
     <>
@@ -42,7 +40,9 @@ const CategoryScreen: FC<CategoryScreenProps> = ({ navigation }: any) => {
                       />
                     </Svg>
                     <Text style={{ fontWeight: '700', color: 'rgba(30, 30, 30, 1)', marginLeft: 10 }}>
-                      {show ? 'CREATE CATEGORY' : 'CATEGORY'}
+                      {show
+                        ? `CREATE PRODUCT NAME ${categoryParamsData?.name?.toUpperCase()}`
+                        : `${categoryParamsData?.name?.toUpperCase()} CATEGORY`}
                     </Text>
                   </View>
                 </TouchableOpacity>
@@ -72,10 +72,10 @@ const CategoryScreen: FC<CategoryScreenProps> = ({ navigation }: any) => {
                     <CustomButton
                       fontSize={14}
                       padding={5}
-                      width={200}
+                      width={250}
                       bntType="primary"
                       mode="contained"
-                      text="ADD CATEGORY"
+                      text="ADD PRODUCT NAME"
                       onPress={() => setShow(true)}
                     />
                   </View>
@@ -94,16 +94,16 @@ const CategoryScreen: FC<CategoryScreenProps> = ({ navigation }: any) => {
               {show ? (
                 <ScrollView style={{ marginRight: 200, marginLeft: 200 }}>
                   <CustomInput
-                    value={categoryInfo.name}
-                    placeholder="Category Name"
-                    onChangeText={handleNameChange}
+                    value={productNameGroupInfo.product_name_group}
+                    placeholder="Product Group Name"
+                    onChangeText={(e) => setProductNameGroupInfo({ ...productNameGroupInfo, product_name_group: e })}
                     inputMode="text"
                   />
                   <CustomInput
-                    value={categoryInfo.description}
-                    placeholder="Category Description"
-                    onChangeText={handleDescriptionChange}
-                    inputMode="text"
+                    value={productNameGroupInfo.price}
+                    placeholder="Product Group Price"
+                    onChangeText={(e) => setProductNameGroupInfo({ ...productNameGroupInfo, price: e })}
+                    inputMode="numeric"
                   />
                   <View style={{ marginTop: 30 }}>
                     <CustomButton
@@ -114,7 +114,7 @@ const CategoryScreen: FC<CategoryScreenProps> = ({ navigation }: any) => {
                       mode="contained"
                       text="CREATE"
                       // loading={authLoading}
-                      onPress={() => createCategory(categoryInfo)}
+                      onPress={onSubmit}
                     />
                   </View>
                 </ScrollView>
@@ -131,7 +131,7 @@ const CategoryScreen: FC<CategoryScreenProps> = ({ navigation }: any) => {
                     renderItem={({ item }) => (
                       <TouchableOpacity
                         style={{ margin: 10, borderRadius: 15 }}
-                        onPress={() => navigation.navigate('productNameScreen', { categoryParamsData: item })}
+                        // onPress={() => navigation.navigate('productNameScreen', { categoryParamsData: item })}
                       >
                         <View
                           style={{
@@ -152,12 +152,23 @@ const CategoryScreen: FC<CategoryScreenProps> = ({ navigation }: any) => {
                               textTransform: 'uppercase',
                             }}
                           >
-                            {item.name}
+                            {item.product_name_group}
+                          </Text>
+                          <Text
+                            style={{
+                              color: appColors.primary,
+                              fontSize: 15,
+                              fontWeight: '600',
+                              textTransform: 'uppercase',
+                              marginTop: 10,
+                            }}
+                          >
+                            ${item.price}
                           </Text>
                         </View>
                       </TouchableOpacity>
                     )}
-                    data={categoryData}
+                    data={productNameGroupData}
                   />
                 </>
               )}
@@ -170,4 +181,4 @@ const CategoryScreen: FC<CategoryScreenProps> = ({ navigation }: any) => {
   );
 };
 
-export default CategoryScreen;
+export default ProductNameScreen;

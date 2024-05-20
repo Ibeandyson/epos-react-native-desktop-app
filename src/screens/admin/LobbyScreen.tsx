@@ -27,7 +27,7 @@ const LobbyScreen: FC<LobbyScreenProps> = ({ navigation }) => {
           alignItems: 'center',
         }}
       >
-        <TouchableOpacity onPress={() => navigation.navigate('categoryScreen')}>
+        <TouchableOpacity  style={{  borderRadius: 15 }} onPress={() => navigation.navigate('categoryScreen')}>
           <View
             style={{
               backgroundColor: 'rgba(255, 255, 255, 1)',
@@ -60,7 +60,7 @@ const LobbyScreen: FC<LobbyScreenProps> = ({ navigation }) => {
             </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('usersScreen')}>
+        <TouchableOpacity style={{  borderRadius: 15 }} onPress={() => navigation.navigate('usersScreen')}>
           <View
             style={{
               backgroundColor: 'rgba(255, 255, 255, 1)',
@@ -98,7 +98,7 @@ const LobbyScreen: FC<LobbyScreenProps> = ({ navigation }) => {
             </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity style={{  borderRadius: 15 }}>
           <View
             style={{
               backgroundColor: 'rgba(255, 255, 255, 1)',
@@ -139,7 +139,7 @@ const LobbyScreen: FC<LobbyScreenProps> = ({ navigation }) => {
             </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity style={{  borderRadius: 15 }}>
           <View
             style={{
               backgroundColor: 'rgba(255, 255, 255, 1)',

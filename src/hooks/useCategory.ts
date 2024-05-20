@@ -12,7 +12,7 @@ const useCategory = () => {
   const dispatch = useDispatch();
   const { apiCall } = useAxios();
   const { setDialogShowState } = useDialogState();
-  const { data }: any = useSelector((state: RootState) => state.customCategory);
+  const { categoryData }: any = useSelector((state: RootState) => state.customCategory);
 
   const getAllCategory = async () => {
     try {
@@ -52,6 +52,13 @@ const useCategory = () => {
       );
       return;
     }
+
+    if (categoryData.some((obj: any) => obj.name?.toLowerCase() == data.name.toLowerCase())) {
+      setCategoryLoading(false);
+      setDialogShowState(true, 'Create category error', 'nice try, but this category already exist', 'Try Again');
+      return;
+    }
+
     try {
       let shopId = await getAsyncStorage('org');
       const res = await apiCall('POST', CREATE_CATEGORY, {
@@ -70,7 +77,7 @@ const useCategory = () => {
     createCategory,
     getAllCategory,
     categoryLoading,
-    categoryData: data,
+    categoryData,
   };
 };
 

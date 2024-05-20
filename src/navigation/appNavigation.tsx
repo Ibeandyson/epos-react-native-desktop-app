@@ -1,6 +1,13 @@
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { CartScreen, RefundScreen } from '../screens/till';
-import { LobbyScreen, UsersScreen, CreateUserScreen, ProductScreen, CategoryScreen } from '../screens/admin';
+import {
+  LobbyScreen,
+  UsersScreen,
+  CreateUserScreen,
+  ProductScreen,
+  CategoryScreen,
+  ProductNameScreen,
+} from '../screens/admin';
 
 type AppScreenProps = {
   cartScreen: undefined;
@@ -10,6 +17,7 @@ type AppScreenProps = {
   createUserScreen: undefined;
   productScreen: undefined;
   categoryScreen: undefined;
+  productNameScreen: undefined;
 };
 
 export type CartScreenProps = NativeStackScreenProps<AppScreenProps, 'cartScreen'>;
@@ -18,7 +26,8 @@ export type LobbyScreenProps = NativeStackScreenProps<AppScreenProps, 'lobbyScre
 export type UsersScreenProps = NativeStackScreenProps<AppScreenProps, 'usersScreen'>;
 export type CreateUserScreenProps = NativeStackScreenProps<AppScreenProps, 'createUserScreen'>;
 export type ProductScreenProps = NativeStackScreenProps<AppScreenProps, 'productScreen'>;
-export type CategoryScreenProps = NativeStackScreenProps<AppScreenProps, 'categoryScreen'>;
+export type CategoryScreenProps = NativeStackScreenProps<AppScreenProps, 'categoryScreen' >;
+export type ProductNameScreenProps = NativeStackScreenProps<AppScreenProps, 'productNameScreen'>;
 
 const Stack = createNativeStackNavigator<AppScreenProps>();
 
@@ -60,10 +69,15 @@ const AppNavigation = () => {
         name="productScreen"
         component={ProductScreen}
       />
-       <Stack.Screen
+      <Stack.Screen
         options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }}
         name="categoryScreen"
         component={CategoryScreen}
+      />
+      <Stack.Screen
+        options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }}
+        name="productNameScreen"
+        component={ProductNameScreen}
       />
     </Stack.Navigator>
   );
