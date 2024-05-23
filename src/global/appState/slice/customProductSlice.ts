@@ -5,14 +5,18 @@ const customProductSlice = createSlice({
   name: 'customProductState',
   initialState: {
     productNameGroupData: [],
+    productNameItemData: [],
   },
   reducers: {
-    setProductNameGroupDataData(state, action) {
+    setProductNameGroupData(state, action) {
       state.productNameGroupData = action.payload;
+    },
+    setProductItemData(state, action) {
+      state.productNameItemData = action.payload;
     },
   },
 });
 
-export const { setProductNameGroupDataData } = customProductSlice.actions;
+export const { setProductNameGroupData, setProductItemData } = customProductSlice.actions;
 
 export default customProductSlice;

@@ -7,6 +7,7 @@ import {
   ProductScreen,
   CategoryScreen,
   ProductNameScreen,
+  AddProductManuallyScreen,
 } from '../screens/admin';
 
 type AppScreenProps = {
@@ -18,6 +19,7 @@ type AppScreenProps = {
   productScreen: undefined;
   categoryScreen: undefined;
   productNameScreen: undefined;
+  addProductManuallyScreen: undefined;
 };
 
 export type CartScreenProps = NativeStackScreenProps<AppScreenProps, 'cartScreen'>;
@@ -26,8 +28,9 @@ export type LobbyScreenProps = NativeStackScreenProps<AppScreenProps, 'lobbyScre
 export type UsersScreenProps = NativeStackScreenProps<AppScreenProps, 'usersScreen'>;
 export type CreateUserScreenProps = NativeStackScreenProps<AppScreenProps, 'createUserScreen'>;
 export type ProductScreenProps = NativeStackScreenProps<AppScreenProps, 'productScreen'>;
-export type CategoryScreenProps = NativeStackScreenProps<AppScreenProps, 'categoryScreen' >;
+export type CategoryScreenProps = NativeStackScreenProps<AppScreenProps, 'categoryScreen'>;
 export type ProductNameScreenProps = NativeStackScreenProps<AppScreenProps, 'productNameScreen'>;
+export type AddProductManuallyScreenProps = NativeStackScreenProps<AppScreenProps, 'addProductManuallyScreen'>;
 
 const Stack = createNativeStackNavigator<AppScreenProps>();
 
@@ -78,6 +81,11 @@ const AppNavigation = () => {
         options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }}
         name="productNameScreen"
         component={ProductNameScreen}
+      />
+       <Stack.Screen
+        options={{ statusBarTranslucent: true, statusBarStyle: 'auto' }}
+        name="addProductManuallyScreen"
+        component={AddProductManuallyScreen}
       />
     </Stack.Navigator>
   );

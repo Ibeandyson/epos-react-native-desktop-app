@@ -20,7 +20,7 @@ const CustomModal = ({ visible, hideModal, containerStyle, marginLeft, marginRig
         style={{ marginRight: marginRight, marginLeft: marginLeft }}
         visible={visible}
         onDismiss={hideModal}
-        contentContainerStyle={[{ backgroundColor: '#ffffff', padding: 20, borderRadius: 20 }, containerStyle]}
+        contentContainerStyle={[{ backgroundColor: '#efeded', padding: 20, borderRadius: 20 }, containerStyle]}
       >
         {!actionMode && (
           <View style={{ justifyContent: 'flex-end', alignItems: 'flex-end', marginBottom: 30 }}>

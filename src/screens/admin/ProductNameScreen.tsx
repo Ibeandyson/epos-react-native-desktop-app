@@ -131,7 +131,9 @@ const ProductNameScreen: FC<ProductNameScreenProps> = ({ navigation, route }: an
                     renderItem={({ item }) => (
                       <TouchableOpacity
                         style={{ margin: 10, borderRadius: 15 }}
-                        // onPress={() => navigation.navigate('productNameScreen', { categoryParamsData: item })}
+                        onPress={() =>
+                          navigation.navigate('productScreen', { productNameGroupParamsData: item })
+                        }
                       >
                         <View
                           style={{

@@ -8,3 +8,5 @@ export const UPDATE_CATEGORY = '';
 export const CREATE_PRODUCT_GROUP = '/api/product/name/group/store';
 export const UPDATE_PRODUCT_GROUP = '';
 export const GET_PRODUCT_GROUP = '/api/product/name/group/list';
+export const CREATE_PRODUCT_ITEM = "/api/product/store"
+export const GET_PRODUCT_ITEM = "/api/product/list"
