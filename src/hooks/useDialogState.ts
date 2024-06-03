@@ -6,11 +6,14 @@ import {
   setCustomDialogTitle,
   setCustomDialogBtnText,
   setCustomDialogStatus,
+  setCustomPreLoaderState,
 } from '../global/appState/slice/customDialogSlice';
 
 const useDialogState = () => {
   const dispatch = useDispatch();
-  const { show, message, title, btnText, _status }: any = useSelector((state: RootState) => state.customDialogS);
+  const { show, message, title, btnText, _status, preLoaderState }: any = useSelector(
+    (state: RootState) => state.customDialogS,
+  );
   const setDialogShowState = (
     state: boolean,
     titleMgs: string,
@@ -24,13 +27,18 @@ const useDialogState = () => {
     dispatch(setCustomDialogBtnText(actionBtnText));
     dispatch(setCustomDialogStatus(status));
   };
+  const onSetPreloadState = (state: boolean) => {
+    dispatch(setCustomPreLoaderState(state));
+  };
   return {
     setDialogShowState,
+    onSetPreloadState,
     show,
     message,
     title,
     btnText,
     _status,
+    preLoaderState,
   };
 };
 

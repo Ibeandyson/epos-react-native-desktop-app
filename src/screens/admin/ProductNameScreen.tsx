@@ -13,11 +13,18 @@ const ProductNameScreen: FC<ProductNameScreenProps> = ({ navigation, route }: an
     product_name_group: '',
     price: '',
   });
-  const { getAllProductNameGroup, createProductNameGroup, productLoading, productNameGroupData } = useProduct();
+  const { getAllProductNameGroup, createProductNameGroup, productNameGroupData } = useProduct();
   const { categoryParamsData }: any = route.params;
 
+  const onClearFun = () => {
+    setProductNameGroupInfo({
+      product_name_group: '',
+      price: '',
+    });
+  };
+
   const onSubmit = () => {
-    createProductNameGroup({ ...productNameGroupInfo, product_category_id: categoryParamsData.id });
+    createProductNameGroup({ ...productNameGroupInfo, product_category_id: categoryParamsData.id }, onClearFun);
   };
 
   useEffect(() => {
@@ -131,9 +138,7 @@ const ProductNameScreen: FC<ProductNameScreenProps> = ({ navigation, route }: an
                     renderItem={({ item }) => (
                       <TouchableOpacity
                         style={{ margin: 10, borderRadius: 15 }}
-                        onPress={() =>
-                          navigation.navigate('productScreen', { productNameGroupParamsData: item })
-                        }
+                        onPress={() => navigation.navigate('productScreen', { productNameGroupParamsData: item })}
                       >
                         <View
                           style={{

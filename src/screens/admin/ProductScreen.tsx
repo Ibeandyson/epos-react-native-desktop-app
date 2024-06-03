@@ -6,6 +6,8 @@ import { Svg, Path } from 'react-native-svg';
 import { ProductScreenProps } from '../../navigation/appNavigation';
 import AdminLayout from '../../components/layout/AdminLayout';
 import useProduct from '../../hooks/useProduct';
+import { ProductItemDataType } from '../../global/constant/types';
+import { useCodeScanner, Camera, useCameraDevice } from 'react-native-vision-camera';
 
 const ProductScreen: FC<ProductScreenProps> = ({ navigation, route }: any) => {
   const [showProduct, setShowProduct] = useState(false);
@@ -16,10 +18,23 @@ const ProductScreen: FC<ProductScreenProps> = ({ navigation, route }: any) => {
   const { productNameGroupParamsData }: any = route.params;
 
   useEffect(() => {
-    getProductItem(productNameGroupParamsData?.id);
+    getProductItem(productNameGroupParamsData.id);
   }, []);
 
+  const codeScanner = useCodeScanner({
+    codeTypes: ['qr', 'ean-13'],
+    onCodeScanned: (codes) => {
+      console.log(`Scanned ${codes.length} codes!`);
+    },
+  });
 
+
+  // const device: any = useCameraDevice('front');
+  // console.log("device", useCameraDevice('front'))
+
+  console.log('productNameGroupParamsData', productNameGroupParamsData);
+
+    
   return (
     <>
       <AdminLayout
@@ -72,16 +87,15 @@ const ProductScreen: FC<ProductScreenProps> = ({ navigation, route }: any) => {
                 </View>
               </View>
             </View>
-            <View>
+            <View style={{ marginTop: 40 }}>
               <FlatList
                 contentContainerStyle={{
                   justifyContent: 'space-between',
-                  alignItems: 'center',
-                  marginTop: 40,
+                  margin: 10,
                 }}
                 keyExtractor={(item: any) => item.id}
-                numColumns={6}
-                renderItem={({ item }) => <CustomAdminProductCard />}
+                numColumns={3}
+                renderItem={({ item }) => <CustomAdminProductCard data={item} />}
                 data={productNameItemData}
               />
             </View>
@@ -95,6 +109,7 @@ const ProductScreen: FC<ProductScreenProps> = ({ navigation, route }: any) => {
                         source={require('../../assets/scantoadd.png')}
                       />
                     </TouchableOpacity>
+                    {/* <Camera device={device} isActive={false} codeScanner={codeScanner} /> */}
                     <TouchableOpacity
                       onPress={() =>
                         navigation.navigate('addProductManuallyScreen', {

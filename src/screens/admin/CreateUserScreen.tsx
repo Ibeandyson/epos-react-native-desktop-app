@@ -11,7 +11,7 @@ import useRole from '../../hooks/useRole';
 
 const CreateUserScreen: FC<CreateUserScreenProps> = ({ navigation }) => {
   const { createUser } = useUsers();
-  const { role, getAllRoles} = useRole();
+  const { role, getAllRoles } = useRole();
   const [selected, setSelected] = useState('');
   const [userInfo, setUserInfo] = useState({
     first_name: '',
@@ -29,7 +29,21 @@ const CreateUserScreen: FC<CreateUserScreenProps> = ({ navigation }) => {
     getAllRoles();
   }, []);
 
-console.log("selected", selected)
+  const onClear = () => {
+    setUserInfo({
+      first_name: '',
+      surname: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+      role: 0,
+      phone: '',
+    });
+  };
+
+  const onSubmit = () => {
+    createUser(userInfo, onClear);
+  };
 
   return (
     <>
@@ -53,7 +67,7 @@ console.log("selected", selected)
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 50 }}>
               <CustomImageUpload />
-              <View style={{ width: '48%', height: '100%', marginTop: -50, marginBottom: 100 }}>
+              <View style={{ width: '45%', height: '100%', marginTop: -50, marginBottom: 100 }}>
                 <CustomInput
                   value={userInfo.first_name}
                   placeholder="First Name"
@@ -93,7 +107,8 @@ console.log("selected", selected)
                 />
                 <View style={{ marginTop: 30 }}>
                   <SelectList
-                  placeholder='Select Role'
+                    boxStyles={{ backgroundColor: '#ffffff' }}
+                    placeholder="Select Role"
                     maxHeight={150}
                     search={false}
                     setSelected={(val: any) => setUserInfo({ ...userInfo, role: val })}
@@ -101,7 +116,6 @@ console.log("selected", selected)
                     save="key"
                   />
                 </View>
-
                 <View style={{ marginTop: 30 }}>
                   <CustomButton
                     fontSize={14}
@@ -110,7 +124,7 @@ console.log("selected", selected)
                     bntType="primary"
                     mode="contained"
                     text="SAVE"
-                    onPress={() => createUser(userInfo)}
+                    onPress={() => onSubmit()}
                   />
                 </View>
               </View>

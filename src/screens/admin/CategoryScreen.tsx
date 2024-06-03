@@ -24,8 +24,9 @@ const CategoryScreen: FC<CategoryScreenProps> = ({ navigation }: any) => {
     getAllCategory();
   }, []);
 
-  console.log(categoryData);
-
+  const onClearFun = () => {
+    setCategoryInfo({ name: '', description: '' });
+  };
   return (
     <>
       <AdminLayout
@@ -114,7 +115,7 @@ const CategoryScreen: FC<CategoryScreenProps> = ({ navigation }: any) => {
                       mode="contained"
                       text="CREATE"
                       // loading={authLoading}
-                      onPress={() => createCategory(categoryInfo)}
+                      onPress={() => createCategory(categoryInfo, onClearFun)}
                     />
                   </View>
                 </ScrollView>

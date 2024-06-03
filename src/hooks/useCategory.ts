@@ -11,7 +11,7 @@ const useCategory = () => {
   const [categoryLoading, setCategoryLoading] = useState(false);
   const dispatch = useDispatch();
   const { apiCall } = useAxios();
-  const { setDialogShowState } = useDialogState();
+  const { setDialogShowState, onSetPreloadState } = useDialogState();
   const { categoryData }: any = useSelector((state: RootState) => state.customCategory);
 
   const getAllCategory = async () => {
@@ -25,25 +25,25 @@ const useCategory = () => {
     }
   };
 
-  const createCategory = async (data: { name: string; description: string }) => {
-    setCategoryLoading(true);
+  const createCategory = async (data: { name: string; description: string }, nextFun?: any) => {
+    onSetPreloadState(true);
     if (data.name == '') {
-      setCategoryLoading(false);
+      onSetPreloadState(false);
       setDialogShowState(true, 'Create category error', 'category name is needed', 'Try Again');
       return;
     }
     if (data.description == '') {
-      setCategoryLoading(false);
+      onSetPreloadState(false);
       setDialogShowState(true, 'Create category error', 'category description  is needed', 'Try Again');
       return;
     }
     if (/\s/.test(data.name)) {
-      setCategoryLoading(false);
+      onSetPreloadState(false);
       setDialogShowState(true, 'Create category error', 'category name should not have space', 'Try Again');
       return;
     }
     if (/^[a-zA-Z0-9]+$/.test(data.name) == false) {
-      setCategoryLoading(false);
+      onSetPreloadState(false);
       setDialogShowState(
         true,
         'Create category error',
@@ -54,7 +54,7 @@ const useCategory = () => {
     }
 
     if (categoryData.some((obj: any) => obj.name?.toLowerCase() == data.name.toLowerCase())) {
-      setCategoryLoading(false);
+      onSetPreloadState(false);
       setDialogShowState(true, 'Create category error', 'nice try, but this category already exist', 'Try Again');
       return;
     }
@@ -66,8 +66,10 @@ const useCategory = () => {
         description: data.description,
         shop_id: shopId.shops[0].id,
       });
+      onSetPreloadState(false);
       setDialogShowState(true, 'Create Category Success', res.data.message, 'Continue', 'success');
       getAllCategory();
+      nextFun();
     } catch (error: any) {
       console.log('Create category error =>', error.response);
     }

@@ -3,6 +3,7 @@ import { FC, useState } from 'react';
 import { appColors } from '../../global/constant/colors';
 import { AdminLoginScreenScreenProps } from '../../navigation/authNavigation';
 import { CustomInput, CustomButton, CustomDialog } from '../../components';
+import CustomSpinner from '../../components/CustomSpinner';
 import { Svg, Path } from 'react-native-svg';
 import useAuth from '../../hooks/useAuth';
 
@@ -69,6 +70,7 @@ const AdminLogin: FC<AdminLoginScreenScreenProps> = ({ navigation }) => {
           </View>
         </View>
         <CustomDialog />
+        <CustomSpinner />
       </View>
     </View>
   );

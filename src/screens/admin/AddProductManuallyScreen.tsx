@@ -13,20 +13,25 @@ const AddProductManuallyScreen: FC<AddProductManuallyScreenProps> = ({ navigatio
   const [productInfo, setProductInfo] = useState({
     name: '',
     description: '',
-    stock: ''
+    stock: '',
   });
 
-  console.log('productNameGroupParamsData', productNameGroupParamsData);
+  const onClearFun = () => {
+    setProductInfo({ name: '', description: '', stock: '' });
+  };
 
   const onSubmit = () => {
-    let data = createProductItemManually({
-      name: productInfo.name,
-      product_name_group_id: productNameGroupParamsData?.id,
-      category_id: productNameGroupParamsData.product_category_id,
-      description: productInfo.description,
-      is_single: 0,
-      stock: productInfo.stock
-    });
+    createProductItemManually(
+      {
+        name: productInfo.name,
+        product_name_group_id: productNameGroupParamsData?.id,
+        category_id: productNameGroupParamsData.product_category_id,
+        description: productInfo.description,
+        is_single: 0,
+        stock: productInfo.stock,
+      },
+      onClearFun
+    );
   };
 
   return (
@@ -49,7 +54,7 @@ const AddProductManuallyScreen: FC<AddProductManuallyScreenProps> = ({ navigatio
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 50 }}>
               <CustomImageUpload />
-              <View style={{ width: '48%', height: '100%', marginBottom: 50, marginTop: 100 }}>
+              <View style={{ width: '45%', height: '100%', marginBottom: 50, marginTop: 100 }}>
                 <CustomInput
                   value={productInfo.name}
                   placeholder="Product Name"
@@ -62,11 +67,11 @@ const AddProductManuallyScreen: FC<AddProductManuallyScreenProps> = ({ navigatio
                   onChangeText={(e) => setProductInfo({ ...productInfo, description: e })}
                   inputMode="text"
                 />
-                 <CustomInput
+                <CustomInput
                   value={productInfo.stock}
                   placeholder="Product Stock"
                   onChangeText={(e) => setProductInfo({ ...productInfo, stock: e })}
-                  inputMode='numeric'
+                  inputMode="numeric"
                 />
                 <View style={{ marginTop: 30 }}>
                   <CustomButton

@@ -13,10 +13,9 @@ import { getAsyncStorage } from '../global/utils/asyncFun';
 import { RootState } from '../global/appState/store';
 
 const useProduct = () => {
-  const [productLoading, setProductLoading] = useState(false);
   const dispatch = useDispatch();
   const { apiCall } = useAxios();
-  const { setDialogShowState } = useDialogState();
+  const { setDialogShowState, onSetPreloadState } = useDialogState();
   const { productNameGroupData, productNameItemData }: any = useSelector((state: RootState) => state.customProduct);
 
   const getAllProductNameGroup = async (product_category_id: number) => {
@@ -30,25 +29,28 @@ const useProduct = () => {
     }
   };
 
-  const createProductNameGroup = async (data: {
-    product_name_group: string;
-    price: string;
-    product_category_id: number;
-  }) => {
-    setProductLoading(true);
+  const createProductNameGroup = async (
+    data: {
+      product_name_group: string;
+      price: string;
+      product_category_id: number;
+    },
+    nextFun?: any,
+  ) => {
+    onSetPreloadState(true);
     if (data.product_name_group == '') {
-      setProductLoading(false);
+      onSetPreloadState(false);
       setDialogShowState(true, 'Create product name error', 'Product name is needed', 'Try Again');
       return;
     }
     if (data.price == '') {
-      setProductLoading(false);
+      onSetPreloadState(false);
       setDialogShowState(true, 'Create product name error', 'Product price  is needed', 'Try Again');
       return;
     }
 
     if (/^[a-zA-Z0-9 ]+$/.test(data.product_name_group) == false) {
-      setProductLoading(false);
+      onSetPreloadState(false);
       setDialogShowState(
         true,
         'Create product name error',
@@ -63,7 +65,7 @@ const useProduct = () => {
         (obj: any) => obj.product_name_group?.toLowerCase() == data.product_name_group.toLowerCase(),
       )
     ) {
-      setProductLoading(false);
+      onSetPreloadState(false);
       setDialogShowState(
         true,
         'Create product name error',
@@ -84,6 +86,8 @@ const useProduct = () => {
       });
       setDialogShowState(true, 'Create Product Name Success', res.data.message, 'Continue', 'success');
       getAllProductNameGroup(data.product_category_id);
+      onSetPreloadState(false);
+      nextFun();
     } catch (error: any) {
       console.log('Create Product name group error =>', error.response);
     }
@@ -96,29 +100,32 @@ const useProduct = () => {
         'GET',
         `${GET_PRODUCT_ITEM}?shop_id=${shopId.shops[0].id}&product_group_id=${product_group_id}`,
       );
-      console.log('product item', res.data.data);
-      dispatch(setProductItemData(res.data.product_groups));
+      console.log('product item', res?.data?.data?.shop_products);
+      dispatch(setProductItemData(res?.data?.data?.shop_products));
     } catch (error: any) {
       console.log('get Product error =>', error.response);
     }
   };
 
-  const createProductItemManually = async (data: {
-    name: string;
-    description: number | any;
-    product_name_group_id: number;
-    is_single: number;
-    category_id: number;
-    stock: string;
-  }) => {
-    setProductLoading(true);
+  const createProductItemManually = async (
+    data: {
+      name: string;
+      description: number | any;
+      product_name_group_id: number;
+      is_single: number;
+      category_id: number;
+      stock: string;
+    },
+    nextFun?: any,
+  ) => {
+    onSetPreloadState(true);
     if (data.name == '') {
-      setProductLoading(false);
+      onSetPreloadState(false);
       setDialogShowState(true, 'Create product item error', 'Product item name is needed', 'Try Again');
       return;
     }
     if (data.stock == '') {
-      setProductLoading(false);
+      onSetPreloadState(false);
       setDialogShowState(true, 'Create product item error', 'Product item stock is needed', 'Try Again');
       return;
     }
@@ -134,7 +141,8 @@ const useProduct = () => {
         stock: Number(data.stock),
       });
       setDialogShowState(true, 'Create Product Item Success', res.data.message, 'Continue', 'success');
-      // getAllProductNameGroup(data.product_category_id);
+      nextFun()
+      onSetPreloadState(false);
     } catch (error: any) {
       console.log('Create Product item error =>', error.response);
     }
@@ -145,7 +153,6 @@ const useProduct = () => {
     getAllProductNameGroup,
     createProductItemManually,
     getProductItem,
-    productLoading,
     productNameGroupData,
     productNameItemData,
   };

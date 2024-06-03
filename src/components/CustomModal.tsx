@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { TouchableOpacity, View, } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { Modal, Portal, Text, Button, PaperProvider } from 'react-native-paper';
 import { Svg, Path } from 'react-native-svg';
 
