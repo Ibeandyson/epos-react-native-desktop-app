@@ -7,7 +7,7 @@ import { Svg, Path } from 'react-native-svg';
 import useAuth from '../../hooks/useAuth';
 
 const TillLogin: FC<TillLoginScreenScreenProps> = ({ navigation }) => {
-  const [loginInfo, setLoginInfo] = useState({ passcode: '' });
+  const [loginInfo, setLoginInfo] = useState({ passcode: '815179' });
   const { tillLoginFunction, authLoading } = useAuth();
   return (
     <View style={{ backgroundColor: '#efeded', height: '100%' }}>

@@ -1,12 +1,19 @@
-import { View, TouchableOpacity, Text, TextInput } from 'react-native';
+import { View, TouchableOpacity, Text, TextInput, FlatList } from 'react-native';
 import { CustomUserCard, CustomButton } from '../../components';
 import AdminLayout from '../../components/layout/AdminLayout';
 import { Svg, Path } from 'react-native-svg';
 import { UsersScreenProps } from '../../navigation/appNavigation';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { appColors } from '../../global/constant/colors';
+import useUsers from '../../hooks/useUsers';
 
 const UsersScreen: FC<UsersScreenProps> = ({ navigation }) => {
+  const { getUser, userData } = useUsers();
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
     <>
       <AdminLayout
@@ -59,7 +66,19 @@ const UsersScreen: FC<UsersScreenProps> = ({ navigation }) => {
                 </View>
               </View>
             </View>
-            <View
+
+            <FlatList
+              contentContainerStyle={{
+                justifyContent: 'space-between',
+                // alignItems: 'center',
+                marginTop: 40,
+              }}
+              data={userData}
+              keyExtractor={(item) => item.id}
+              numColumns={4}
+              renderItem={({ item }) => <CustomUserCard />}
+            />
+            {/* <View
               style={{
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -81,7 +100,7 @@ const UsersScreen: FC<UsersScreenProps> = ({ navigation }) => {
                 <CustomUserCard />
                 <CustomUserCard />
               </View>
-            </View>
+            </View> */}
           </View>
         }
       />

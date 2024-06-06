@@ -1,13 +1,27 @@
-import { CREATE_USER } from '../global/constant/apiRoutes';
+import { CREATE_USER, GET_USER } from '../global/constant/apiRoutes';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../global/appState/store';
 import useAxios from './useAxios';
 import useDialogState from './useDialogState';
-import { useState } from 'react';
+import { setUserData } from '../global/appState/slice/customUserSlice';
+import { getAsyncStorage } from '../global/utils/asyncFun';
 
 const useUsers = () => {
   const { apiCall } = useAxios();
+  const dispatch = useDispatch();
   const { setDialogShowState, onSetPreloadState } = useDialogState();
+  const { userData }: any = useSelector((state: RootState) => state.customUser);
+
+  const getUser = async () => {
+    try {
+      let shopId = await getAsyncStorage('org');
+      const res = await apiCall('GET', `${GET_USER}?shop_id=${shopId.shops[0].id}`);
+      console.log("user dat", res.data.users)
+      dispatch(setUserData(res.data.users));
+    } catch (error) {
+      console.log('get user error', error);
+    }
+  };
 
   const createUser = async (
     data: {
@@ -79,6 +93,8 @@ const useUsers = () => {
 
   return {
     createUser,
+    getUser,
+    userData,
   };
 };
 
