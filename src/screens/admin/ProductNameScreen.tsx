@@ -133,6 +133,13 @@ const ProductNameScreen: FC<ProductNameScreenProps> = ({ navigation, route }: an
                       alignItems: 'center',
                       marginTop: 40,
                     }}
+                    ListHeaderComponent={
+                      <>
+                        {productNameGroupData.length < 1 && (
+                          <Text style={{ fontSize: 15, fontWeight: '900' }}>No Product Name Group Create Yet</Text>
+                        )}
+                      </>
+                    }
                     keyExtractor={(item) => item.id}
                     numColumns={6}
                     renderItem={({ item }) => (

@@ -127,6 +127,13 @@ const CategoryScreen: FC<CategoryScreenProps> = ({ navigation }: any) => {
                       alignItems: 'center',
                       marginTop: 40,
                     }}
+                    ListHeaderComponent={
+                      <>
+                        {categoryData.length < 1 && (
+                          <Text style={{ fontSize: 15, fontWeight: '900' }}>No Category Create Yet</Text>
+                        )}
+                      </>
+                    }
                     keyExtractor={(item) => item.id}
                     numColumns={6}
                     renderItem={({ item }) => (
